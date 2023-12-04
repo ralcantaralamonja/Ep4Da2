@@ -15,7 +15,7 @@ public interface CursoRepository extends JpaRepository<Curso, Integer> {
     Page<Curso> findByNombreContaining(String nombre, Pageable pageable);
 
     //SELECT * FROM cursos WHERE nrc  like '%?%'
-    Page<Curso> findByNrcContaining(String nrc, Pageable pageable);
+    //Page<Curso> findByNrcContaining(String nrc, Pageable pageable);
 
     //listar los 5 cursos por fecha de creacion: SELECT TOP 5 * FROM curso ORDER BY fecha_creacion
     List<Curso> findTop5ByOrderByFechaCreacionDesc();

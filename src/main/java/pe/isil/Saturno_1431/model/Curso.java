@@ -1,10 +1,15 @@
 package pe.isil.Saturno_1431.model;
+
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.sql.Time;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Entity
@@ -12,12 +17,6 @@ public class Curso {
     @Id //primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY) //autoincremental
     private Integer id;
-
-    @Column(unique = true)
-    @NotBlank
-    @NotNull
-    @Size(max = 4, min = 4)
-    private String nrc;
 
     @NotNull
     @Size(max = 50, min = 2)
@@ -30,25 +29,29 @@ public class Curso {
 
     @NotNull
     @Min(1)
-    @Max(4)
-    private Integer creditos;
+    @Max(5000)
+    private Integer capacidad;
 
     @NotNull
-    @Min(1)
-    @Max(4)
-    private Integer horas;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechaevento;
 
     @NotNull
-    @NotBlank
-    private String modalidad;
+    private Time horaevento;
 
     @NotNull
-    @NotBlank
-    private String area;
+    private String duracion;
+
+    @NotNull
+    @Min(10)
+    @Max(500)
+    private float precio;
+
     private LocalDateTime fechaCreacion; //fechaCreacion
     private LocalDateTime fechaActualizacion; //fechaActualizacion
 
-    @PrePersist //pre(antes de insertar asignar el valor en la fecha de creacion)
+    @PrePersist
+        //pre(antes de insertar asignar el valor en la fecha de creacion)
     void prePersist(){
         fechaCreacion = LocalDateTime.now();
     }
@@ -63,9 +66,6 @@ public class Curso {
     @Transient //esta anatocion realiza el campo solo sea a nivel de aplicacion
     private MultipartFile imagen;
 
-    @NotNull
-    @Min(10)
-    @Max(500)
-    private float precio;
+
 
 }

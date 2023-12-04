@@ -8,10 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.isil.Saturno_1431.model.Curso;
 import pe.isil.Saturno_1431.repository.CursoRepository;
@@ -51,4 +48,5 @@ public class CursoController {
         model.addAttribute("curso", curso);
         return "detalle-curso";
     }
+
 }

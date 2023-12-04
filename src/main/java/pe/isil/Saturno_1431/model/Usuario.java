@@ -40,7 +40,7 @@ public class Usuario {
 
     public enum Rol{
         ADMIN,
-        ALUMNO
+        USUARIO
     }
 
     private Rol rol;

@@ -90,14 +90,11 @@ public class AdminCursoController {
         Curso cursoFromDB = cursoRepository.getById(id);
 
         //2. setear los campos a modificar
-        cursoFromDB.setArea(curso.getArea());
-        cursoFromDB.setCreditos(curso.getCreditos());
-        cursoFromDB.setHoras(curso.getHoras());
-        cursoFromDB.setNombre(curso.getNombre());
+         cursoFromDB.setCapacidad(curso.getCapacidad());
+         cursoFromDB.setNombre(curso.getNombre());
         cursoFromDB.setDescripcion(curso.getDescripcion());
-        cursoFromDB.setNrc(curso.getNrc());
-        cursoFromDB.setModalidad(curso.getModalidad());
-        cursoFromDB.setPrecio(curso.getPrecio());
+
+         cursoFromDB.setPrecio(curso.getPrecio());
 
         //3. guardamos en bd
         cursoRepository.save(cursoFromDB);

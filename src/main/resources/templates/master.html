@@ -13,7 +13,7 @@
 
     <style>
         .bg-navbar {
-            background-color: #02B0F2! important;
+            background-color: #000000! important;
         }
         .dropdown-menu[data-bs-popper]{
                 right:0;
@@ -35,7 +35,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a href="/" class="navbar-brand">ISIL</a>
+            <a href="/" class="navbar-brand">TICKETS </a>
 
             <div class="collapse navbar-collapse" id="menuopciones">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
@@ -43,13 +43,13 @@
                         <a href="/" class="nav-link"  aria-current="page">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/cursos" class="nav-link">Cursos</a>
+                        <a href="/cursos" class="nav-link">Eventos</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
                         <a href="/admin/usuarios" class="nav-link">Gestión de Usuarios</a>
                     </li>
                     <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a href="/admin/cursos" class="nav-link">Gestión de Cursos</a>
+                        <a href="/admin/cursos" class="nav-link">Gestión de Eventos</a>
                     </li>
                 </ul>
                 <div sec:authorize="!isAuthenticated()">

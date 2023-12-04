@@ -82,7 +82,7 @@ public class AdminUsuarioController {
         }
 
         usuario.setPassword(usuario.getPassword1()); //codificar o encripta la contaseña
-        usuario.setRol(Usuario.Rol.ALUMNO);
+        usuario.setRol(Usuario.Rol.USUARIO);
         usuarioRepository.save(usuario);
         redirectAttributes.addFlashAttribute("msgExito", "Usuario registrado con éxito");
         return "redirect:/admin/usuarios";

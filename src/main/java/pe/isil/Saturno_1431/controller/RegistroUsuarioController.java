@@ -58,7 +58,7 @@ public class RegistroUsuarioController {
         }
 
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword1()));
-        usuario.setRol(Usuario.Rol.ALUMNO);
+        usuario.setRol(Usuario.Rol.USUARIO);
         usuarioRepository.save(usuario);
 
         redirectAttributes.addAttribute("registroExitoso", "");
