@@ -50,8 +50,7 @@ public class AdminCursoController {
         return "admin/cursos/nuevo"; //hacia una VISTA o HTML
     }
 
-    //CREAR: REGISTRAR UN NUEVO CURSO: INSERT INTO curso
-    //POST
+
     @PostMapping("/nuevo") //localhost:8080/cursos/nuevo
     String crear(Model model, @Validated Curso curso, BindingResult bindingResult, RedirectAttributes ra){
         if (curso.getImagen().isEmpty()){

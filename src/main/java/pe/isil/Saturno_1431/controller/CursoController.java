@@ -39,7 +39,7 @@ public class CursoController {
         Page<Curso> cursos = cursoRepository.findAll(pageable);
         model.addAttribute("cursos", cursos);
 
-        return "lista-cursos";
+        return "index";
     }
 
     @GetMapping("/cursos/{id}")
