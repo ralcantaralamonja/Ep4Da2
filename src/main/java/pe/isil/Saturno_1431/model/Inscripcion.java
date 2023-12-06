@@ -14,6 +14,12 @@ public class Inscripcion {
     @Column(name = "idinscripcion")
     private Integer id;
 
+    private int ninos;
+    private int adultos;
+    private int adultosMayor;
+    private int deportistasCalificados;
+    private float desct;
+
     @ManyToOne
     @JoinColumn(name = "idusuario", referencedColumnName = "idusuario")
     private Usuario usuario;

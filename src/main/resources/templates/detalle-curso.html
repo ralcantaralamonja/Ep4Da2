@@ -1,102 +1,71 @@
 <!DOCTYPE html>
-<html lang="es"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{master.html}"
->
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{master.html}">
 <head>
     <meta charset="UTF-8">
     <title>[[${curso.nombre}]]</title>
 </head>
 <div layout:fragment="styles">
     <style>
-            .categoria{
+        .categoria {
             width: 180px;
-            }
-            .entradaCateg {
-    display: flex;
-    align-items: center;
-    padding: 10px 0px;
-}
+        }
 
-        </style>
+        .entradaCateg {
+            display: flex;
+            align-items: center;
+            padding: 10px 0px;
+        }
+    </style>
 </div>
 <body>
 <form action="/calcularDescuento" method="post">
-<div layout:fragment="content">
-    <div class="container my-5" th:object="${curso}">
-        <h3 class="text-success mb-3">[[*{nombre}]]</h3>
-        <div class="row">
-            <div class="col-md-6">
-                <img th:src="@{/media/{rutaImagen}(rutaImagen=*{rutaImagen})}"
-                     th:alt="*{nombre}" class="card-img-top">
-            </div>
-            <div class="col-md-6">
-                <p>
-                    [[*{descripcion}]]
-                </p>
-
-                <h4>Seleccionar entradas:</h4>
-                <div class="entradaCateg">
-                    <div class="categoria">
-                    <input type="checkbox" id="chkNinos">
-                    <label for="chkNinos">Niños</label>
-                    </div>
-                    <input  type="number" id="contadorNinos" value="0" min="0">
+    <div layout:fragment="content">
+        <div class="container my-5" th:object="${curso}">
+            <h3 class="text-success mb-3">[[*{nombre}]]</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <img th:src="@{/media/{rutaImagen}(rutaImagen=*{rutaImagen})}" th:alt="*{nombre}" class="card-img-top">
                 </div>
-                <div class="entradaCateg">
-                    <div class="categoria">
-                    <input type="checkbox" id="chkAdultos">
-                    <label for="chkAdultos">Adultos</label>
-                    </div>
-                    <input type="number" id="contadorAdultos" value="0" min="0">
-                </div>
+                <div class="col-md-6">
+                    <p>[[*{descripcion}]]</p>
+                    <h4>Seleccionar entradas:</h4>
                     <div class="entradaCateg">
                         <div class="categoria">
-                    <input type="checkbox" id="chkAdultosMayor">
-                    <label for="chkAdultosMayor">Adulto Mayor</label>
+                            <input type="checkbox" id="chkNinos">
+                            <label for="chkNinos">Niños</label>
                         </div>
-                    <input type="number" id="contadorAdultosMayor" value="0" min="0">
-                </div>
-
-                <div class="entradaCateg">
-                    <div class="categoria">
-                    <input type="checkbox" id="chkDeportistaCalificado">
-                    <label for="chkDeportistaCalificado">Deportista calificado</label>
+                        <input type="number" name="ninos" id="contadorNinos" value="0" min="0">
                     </div>
-                    <input type="number" id="contadorDeportistaCalificado" value="0" min="0">
+                    <div class="entradaCateg">
+                        <div class="categoria">
+                            <input type="checkbox" id="chkAdultos">
+                            <label for="chkAdultos">Adultos</label>
+                        </div>
+                        <input type="number" name="adultos" id="contadorAdultos" value="0" min="0">
+                    </div>
+                    <div class="entradaCateg">
+                        <div class="categoria">
+                            <input type="checkbox" id="chkAdultosMayor">
+                            <label for="chkAdultosMayor">Adulto Mayor</label>
+                        </div>
+                        <input type="number" name="adultosMayor" id="contadorAdultosMayor" value="0" min="0">
+                    </div>
+                    <div class="entradaCateg">
+                        <div class="categoria">
+                            <input type="checkbox" id="chkDeportistaCalificado">
+                            <label for="chkDeportistaCalificado">Deportista calificado</label>
+                        </div>
+                        <input type="number" name="deportistasCalificados" id="contadorDeportistaCalificado" value="0" min="0">
+                    </div>
+                    <!-- Resto del código -->
+                    <p>Total a pagar: S/ [[*{#numbers.formatDecimal(precio, 1, 'COMMA', 2, 'POINT')}]]</p>
+                    <a onclick="comprar(this)" th:href="@{/usuario/inscribir/{id}(id=*{id})}" class="btn btn-dark btn-lg">
+                        <i class="fa-solid fa-cart-shopping"></i> Comprar
+                    </a>
                 </div>
-                <script>
-                    // Obtener los elementos HTML
-                    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-                    const contadores = document.querySelectorAll('input[type="number"]');
-
-                    // Deshabilitar contadores inicialmente
-                    contadores.forEach(contador => contador.disabled = true);
-
-                    // Agregar evento de cambio a los checkboxes
-                    checkboxes.forEach((checkbox, index) => {
-                        checkbox.addEventListener('change', function () {
-                            const contador = contadores[index];
-                            contador.disabled = !this.checked;
-                            if (!this.checked) {
-                                contador.value = '0';
-                            }
-                        });
-                    });
-                </script>
-
-                <p>
-                   Total a pagar:  S/ [[*{#numbers.formatDecimal(precio, 1, 'COMMA', 2, 'POINT')}]]
-                </p>
-                <a onclick="comprar(this)" th:href="@{/usuario/inscribir/{id}(id=*{id})}" class="btn btn-dark btn-lg">
-                    <i class="fa-solid fa-cart-shopping"></i> Comprar
-                </a>
-
             </div>
         </div>
     </div>
-</div>
 </form>
 </body>
 </html>
